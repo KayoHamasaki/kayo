@@ -1,0 +1,104 @@
+<html>
+<head>
+<style type="text/css">
+#stage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 10% 20%;
+  background: url(image/bg.jpg) no-repeat;
+  overflow: hidden;
+}
+#start {
+  margin: -130px 0 0 -310px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+}
+#egg-obj {
+  width: 15%;
+  height: 19%;
+  border: none;
+  position: absolute;
+  border-radius: 50%;
+  top: 30%;
+  left: 30%;
+}
+#taro {
+  transform: scale(0.5,0.5);
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+}
+
+#start:hover {
+  opacity: 0.8;
+}
+#button-area{
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+#button-area{
+  position: absolute;
+  top: 600px;
+    
+}
+#button-area > input{
+  width: calc(15% - 20px);
+  margin: 5px;
+  border-radius: 4px;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  font-weight: bold;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	// スタートボタン
+	$('#start').click(function(){
+	  $(this).animate({ opacity: 0}, 300, function(){
+	    $(this).remove();
+	    $("#egg-obj").show();
+	  });
+  	});
+  	// 卵クリックで生まれる
+	$('#egg-obj').click(function(){
+	    $("#egg").remove();
+	    $("#taro").show();
+	});
+	$('#button-area input:eq(0)').click(function(){
+	
+		$("#taro").animate({paddingRight:1},{
+			duration:500,
+			step:function(now){
+				$(this).css({transform:'scale('+now+')'});
+			},
+		})
+	});
+});
+
+</script>
+</head>
+<body>
+<div id="stage">
+  <div id="start"><img src="image/btn_start.png"></div>
+  <div id="egg-obj" style="display:none">
+  	<img src="image/egg.jpg" id="egg">
+  	<img src="image/taro.jpg" id="taro" style="display:none">
+  </div>
+  </div>
+  <div class="taro">
+  	<img src="image/taro.jpg" id="taro">
+  </div>
+  <div id="button-area">
+    <input type="button" id="act-esa" value="エサをあげる">
+    <input type="button" id="act-esa" value="遊ばせる">
+    <input type="button" id="act-esa" value="洗う">
+  </div>
+</div>
+</body>
+</html>
